@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    
+    <title>AQDAP</title>
+    <!-- BOOTSTRAP CORE STYLE  -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- FONT AWESOME STYLE  -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE  -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <style>
+     #map {
+        width: 100%;
+        height: 400px;
+
+      }
+      </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse set-radius-zero" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <!--<span class="icon-bar">HOME</span>
+                    <span class="icon-bar">TABLE</span>
+                    <span class="icon-bar"></span>-->
+                    <ul id="menu-top" class="nav navbar-nav navbar-right">
+                    <li><a href="table.html">TABLE</a></li>
+                    <li><a href="blank.html" class="menu-top-active">HOME PAGE</a></li>
+                    </ul>    
+
+                </button>
+                <a class="navbar-brand" href="index.html">
+
+                    <img src="assets/img/logo.png" />
+                </a>
+
+            </div>
+
+            
+        </div>
+    </div>
+    <!-- LOGO HEADER END-->
+    <section class="menu-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-collapse collapse ">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                           
+                            <li><a href="table.html">TABLE</a></li>
+                            <li><a href="blank.html" class="menu-top-active">HOME PAGE</a></li>
+
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+     <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+         <div class="container">
+        <div class="row pad-botm">
+            <div class="col-md-12">
+                <h4 class="header-line">Blank Page</h4>
+                
+                            </div>
+
+        </div>
+             <div class="row">
+            <div class="col-md-12">
+               <div class="alert alert-info">
+                    <div id="map"></div> <script>
+                                var map;
+                                function initMap(){
+                                    map = new google.maps.Map(document.getElementById('map'), {
+                                        zoom:14,
+                                        center: {lat: 13.3605015, lng: 74.7863698},
+                                        mapTypeId: 'terrain'
+                                     });
+                                var script = document.createElement('script');
+                                script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+                                 document.getElementsByTagName('head')[0].appendChild(script);
+
+                                }
+                                function eqfeed_callback(results) {
+                                                        var heatmapData = [];
+                                                        for (var i = 0; i < results.features.length; i++) {
+                                                                var coords = results.features[i].geometry.coordinates;
+                                                                var latLng = new google.maps.LatLng(coords[1], coords[0]);
+                                                                heatmapData.push(latLng);
+                                                                }
+                                                        var heatmap = new google.maps.visualization.HeatmapLayer({
+                                                        data: heatmapData,
+                                                        dissipating: false,
+                                                        map: map
+                                                            });
+                                                                }
+</script>
+                   <br />
+                  
+               </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+     <!-- CONTENT-WRAPPER SECTION END-->
+    <section class="footer-section">
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+    </section>
+     
+    <script src="assets/js/jquery-1.10.2.js"></script>
+   
+    <script src="assets/js/bootstrap.js"></script>
+      
+    <script src="assets/js/custom.js"></script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCW6NmLbIm_OJpuRnsjOYZu9Ni3Z8SAvD4&libraries=visualization&callback=initMap"> 
+        </script>
+</body>
+</html>
